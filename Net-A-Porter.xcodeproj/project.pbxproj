@@ -20,7 +20,7 @@
 		76CA6EB1204F7C2200965EA0 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA6EB0204F7C2200965EA0 /* Product.swift */; };
 		76CA6EB7204F82AD00965EA0 /* ProductsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA6EB6204F82AD00965EA0 /* ProductsWorker.swift */; };
 		76CA6EBA204F8D1200965EA0 /* ProductsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA6EB9204F8D1200965EA0 /* ProductsAPI.swift */; };
-		76CA6EBC204F9C0500965EA0 /* ProductsMemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA6EBB204F9C0500965EA0 /* ProductsMemStore.swift */; };
+		76CA6EBE2050165900965EA0 /* CellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CA6EBD2050165900965EA0 /* CellCollectionViewCell.swift */; };
 		F9465F3958EE89ACE567D1A5 /* Pods_Net_A_Porter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7D419F0931497B88BF5C500 /* Pods_Net_A_Porter.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,7 +42,7 @@
 		76CA6EB0204F7C2200965EA0 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		76CA6EB6204F82AD00965EA0 /* ProductsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsWorker.swift; sourceTree = "<group>"; };
 		76CA6EB9204F8D1200965EA0 /* ProductsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsAPI.swift; sourceTree = "<group>"; };
-		76CA6EBB204F9C0500965EA0 /* ProductsMemStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsMemStore.swift; sourceTree = "<group>"; };
+		76CA6EBD2050165900965EA0 /* CellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellCollectionViewCell.swift; sourceTree = "<group>"; };
 		A7D419F0931497B88BF5C500 /* Pods_Net_A_Porter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Net_A_Porter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -117,6 +117,7 @@
 				76CA6EA6204F70BD00965EA0 /* ProductListingRouter.swift */,
 				76CA6EA7204F70BD00965EA0 /* ProductListingViewController.swift */,
 				76CA6EA8204F70BD00965EA0 /* ProductListingWorker.swift */,
+				76CA6EBD2050165900965EA0 /* CellCollectionViewCell.swift */,
 			);
 			path = ProductListing;
 			sourceTree = "<group>";
@@ -140,7 +141,6 @@
 		76CA6EB8204F8CAA00965EA0 /* services */ = {
 			isa = PBXGroup;
 			children = (
-				76CA6EBB204F9C0500965EA0 /* ProductsMemStore.swift */,
 				76CA6EB9204F8D1200965EA0 /* ProductsAPI.swift */,
 			);
 			name = services;
@@ -253,10 +253,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Net-A-Porter/Pods-Net-A-Porter-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -287,11 +291,11 @@
 			files = (
 				76CA6E6A204F626D00965EA0 /* AppDelegate.swift in Sources */,
 				76CA6EB1204F7C2200965EA0 /* Product.swift in Sources */,
+				76CA6EBE2050165900965EA0 /* CellCollectionViewCell.swift in Sources */,
 				76CA6EBA204F8D1200965EA0 /* ProductsAPI.swift in Sources */,
 				76CA6EAD204F70BD00965EA0 /* ProductListingViewController.swift in Sources */,
 				76CA6EB7204F82AD00965EA0 /* ProductsWorker.swift in Sources */,
 				76CA6EAE204F70BD00965EA0 /* ProductListingWorker.swift in Sources */,
-				76CA6EBC204F9C0500965EA0 /* ProductsMemStore.swift in Sources */,
 				76CA6EA9204F70BD00965EA0 /* ProductListingInteractor.swift in Sources */,
 				76CA6EAC204F70BD00965EA0 /* ProductListingRouter.swift in Sources */,
 				76CA6EAA204F70BD00965EA0 /* ProductListingModels.swift in Sources */,
@@ -434,8 +438,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z562RK23JW;
+				DEVELOPMENT_TEAM = 7U94QR6M7P;
 				INFOPLIST_FILE = "Net-A-Porter/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.digitalinsomnia.Net-A-Porter";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -450,8 +455,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z562RK23JW;
+				DEVELOPMENT_TEAM = 7U94QR6M7P;
 				INFOPLIST_FILE = "Net-A-Porter/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.digitalinsomnia.Net-A-Porter";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -6,7 +6,7 @@ target 'Net-A-Porter' do
   use_frameworks!
 
   # Pods for Net-A-Porter
-
+		
 	pod 'Alamofire'
-
+	pod 'AlamofireObjectMapper'
 end

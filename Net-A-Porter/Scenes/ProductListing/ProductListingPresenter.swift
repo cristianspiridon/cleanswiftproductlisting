@@ -7,6 +7,14 @@
 
 import UIKit
 
+extension String
+{
+    func replace(target: String, withString: String) -> String
+    {
+        return self.replacingOccurrences(of: target, with: withString, options: NSString.CompareOptions.literal, range: nil)
+    }
+}
+
 protocol ProductListingPresentationLogic
 {
   func presentFetchedProducts(response: ProductListing.FetchProducts.Response)
@@ -26,13 +34,21 @@ class ProductListingPresenter: ProductListingPresentationLogic
   {
     
     var displayedProducts:[ProductListing.FetchProducts.ViewModel.DisplayedProduct] = []
+    
     for product in response.products {
         
-        let title  = product.title
-        let imgsrc = product.imgsrc
-        let price  = product.price
+        let title  = product.name
+        var imgsrc:String = (product.images?.urlTemplate)!
+        
+        imgsrc = imgsrc.replace(target: "{{scheme}}", withString: "https:")
+        imgsrc = imgsrc.replace(target: "{{shot}}", withString: "in")
+        imgsrc = imgsrc.replace(target: "{{size}}", withString: "m2")
+        
+        print(imgsrc)
+        
+        let price  = convertToCurrency(value: Double((product.price?.amount)! / (product.price?.divisor)!))
  
-        let displayedProduct = ProductListing.FetchProducts.ViewModel.DisplayedProduct(imgPath:imgsrc, title:title, price:price)
+        let displayedProduct = ProductListing.FetchProducts.ViewModel.DisplayedProduct(imgPath:imgsrc, title:title!, price:price)
         displayedProducts.append(displayedProduct)
     }
     
@@ -40,4 +56,17 @@ class ProductListingPresenter: ProductListingPresentationLogic
     viewController?.displayedProducts(viewModel: viewModel)
     
   }
+    
+    func convertToCurrency(value:Double) -> String {
+        
+        let cForm = NumberFormatter()
+        cForm.usesGroupingSeparator = true
+        cForm.numberStyle = .currency
+        
+        let priceString = cForm.string(from: NSNumber(value: value))
+        
+        
+        return priceString!
+        
+    }
 }

@@ -19,20 +19,17 @@ class ProductsWorker
         self.productsStore = productsStore
     }
     
-    func fetchProducts(completionHandler: @escaping ([Product]) -> Void)
+    func fetchProducts(completionHandler: @escaping ([Product]?) -> Void)
     {
-        productsStore.fetchProducts { (products: () throws -> [Product]) -> Void in
-            do {
-                let products = try products()
+        
+        productsStore.fetchProducts { (products) in
+          
                 DispatchQueue.main.async {
                     completionHandler(products)
                 }
-            } catch {
-                DispatchQueue.main.async {
-                    completionHandler([])
-                }
-            }
+          
         }
+       
     }
     
 }
@@ -41,12 +38,10 @@ class ProductsWorker
 
 protocol ProductsStoreProtocol
 {
-    func fetchProducts(completionHandler: @escaping (() throws -> [Product]) -> Void)
+  func fetchProducts(completion: @escaping ([Product]?) -> Void)
 }
 
 // MARK: - Products store CRUD operation results
-
-typealias ProductsStoreFetchProductsCompletionHandler = (ProductsStoreResult<[Product]>) -> Void
 
 enum ProductsStoreResult<U>
 {

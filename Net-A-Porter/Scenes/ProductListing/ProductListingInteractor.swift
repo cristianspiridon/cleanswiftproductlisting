@@ -20,7 +20,11 @@ protocol ProductListingDataStore
 class ProductListingInteractor: ProductListingBusinessLogic, ProductListingDataStore
 {
     var presenter: ProductListingPresentationLogic?
-    var worker = ProductsWorker(productsStore: ProductsMemStore())
+    
+    // From Memory
+   // var worker = ProductsWorker(productsStore: ProductsMemStore())
+    
+    var worker = ProductsWorker(productsStore: ProductsAPI())
     
     var products: [Product]?
     
@@ -30,7 +34,7 @@ class ProductListingInteractor: ProductListingBusinessLogic, ProductListingDataS
     {
         worker.fetchProducts { (products) -> Void in
             self.products = products
-            let response = ProductListing.FetchProducts.Response(products: products)
+            let response = ProductListing.FetchProducts.Response(products: products!)
             self.presenter?.presentFetchedProducts(response: response)
         }
     }

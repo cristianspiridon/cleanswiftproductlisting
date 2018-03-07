@@ -72,20 +72,31 @@ class ProductListingViewController: UIViewController, UICollectionViewDelegate, 
   {
     super.viewDidLoad()
     fetchOnLoad()
+    layoutUICollection()
   }
   
   
-  func fetchOnLoad()
-  {
-    let request = ProductListing.FetchProducts.Request()
-    interactor?.fetchProducts(request: request)
-  }
+    func fetchOnLoad()
+    {
+        let request = ProductListing.FetchProducts.Request()
+        interactor?.fetchProducts(request: request)
+    }
+    
+    func layoutUICollection() {
+        
+        print("layout collection")
+        
+        let layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        layout.itemSize = CGSize(width: (self.collectionView.frame.size.width - 30) / 2, height: (self.collectionView.frame.size.height / 2))
+        
+    }
   
   func displayedProducts(viewModel: ProductListing.FetchProducts.ViewModel)
   {
         displayedProducts = viewModel.displayedProducts
     
-        print("load data on screen")
+        print("load data on screen \(displayedProducts)")
         //load data on screen
         collectionView.reloadData()
     
@@ -108,9 +119,6 @@ class ProductListingViewController: UIViewController, UICollectionViewDelegate, 
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         
-        //    let displayedOrder = displayedOrders[indexPath.row]
-        
-        print("show info for cell ..")
-        
+        (cell as! CellCollectionViewCell).setData(data: displayedProducts[indexPath.row])
     }
 }
